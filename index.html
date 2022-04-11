@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"
+    <title>Meet your Matchmaker</title>
+</head>
+<!--
+    Author: Jeffrey Lacca
+    Project MatchmakerWeb Lab
+    
+    All rights reserved
+-->
+
+<body>
+    <h1>Matchmaker Lite</h1>
+    <p>Select your answer to the questions with the drop down boxes below. Once entered click "Calculate Compatibility" to get your answer!</p>
+
+    <label">The 737 is a great aircraft:</label>
+
+    <select id="q1">
+      <option value="5">strongly agree</option>
+      <option value="4">agree</option>
+      <option value="3">neutral</option>
+      <option value="2">disagree</option>
+      <option value="1">strongly disagree</option>
+    </select>
+    <br /><br />
+
+    <label">Southwest is a great airline:</label>
+
+    <select id="q2">
+      <option value="5">strongly agree</option>
+      <option value="4">agree</option>
+      <option value="3">neutral</option>
+      <option value="2">disagree</option>
+      <option value="1">strongly disagree</option>
+    </select>
+    <br /><br />
+
+    <label">The Cubs are better than the Sox:</label>
+
+    <select id="q3">
+      <option value="5">strongly agree</option>
+      <option value="4">agree</option>
+      <option value="3">neutral</option>
+      <option value="2">disagree</option>
+      <option value="1">strongly disagree</option>
+    </select>
+    <br /><br />
+
+    <label">Coding is hard</label>
+
+    <select id="q4">
+      <option value="5">strongly agree</option>
+      <option value="4">agree</option>
+      <option value="3">neutral</option>
+      <option value="2">disagree</option>
+      <option value="1">strongly disagree</option>
+    </select>
+    <br /><br />
+
+    <label">Grapes taste good</label>
+
+    <select id="q5">
+      <option value="5">strongly agree</option>
+      <option value="4">agree</option>
+      <option value="3">neutral</option>
+      <option value="2">disagree</option>
+      <option value="1">strongly disagree</option>
+    </select>
+    <br /><br />
+
+    <br /><br /><br /><br />
+    <button onclick="calculateCompatibility()">Calculate Compatibility</button>
+    <p id="Compatibility"></p>
+    <p id="witty_remark"> How we match:</p>
+
+<script>
+console.log("Starting Matchmaker Lite...");
+
+function calculateCompatibility() {
+    console.log("calculateCompatibility");
+
+    const   DESIRED_RESPONSE = [
+        5, /*strongly agree*/
+        5, /*strongly agree*/
+        5, /*strongly agree*/
+        4, /*strongly agree*/
+        3, /*strongly agree*/
+    ]
+
+    const MAX_SCORE = 25;
+
+
+    let question1Response = document.getElementById('q1').selectedOptions[0].value;
+    let question2Response = document.getElementById('q2').selectedOptions[0].value;
+    let question3Response = document.getElementById('q3').selectedOptions[0].value;
+    let question4Response = document.getElementById('q4').selectedOptions[0].value;
+    let question5Response = document.getElementById('q5').selectedOptions[0].value;
+
+
+
+    console.log("Question 1 Answers:")
+	console.log(document.getElementById("q1").selectedOptions[0].text);
+	console.log(document.getElementById("q1").selectedOptions[0].value);
+	console.log(question1Response);
+
+	  console.log("Question 2 Answers:");
+	console.log(document.getElementById("q2").selectedOptions[0].text);
+	console.log(document.getElementById("q2").selectedOptions[0].value);
+	console.log(question2Response);
+
+	  console.log("Question 3 Answers:");
+	console.log(document.getElementById("q3").selectedOptions[0].text);
+	console.log(document.getElementById("q3").selectedOptions[0].value);
+	console.log(question3Response);
+
+    console.log("Question 4 Answers:");
+	console.log(document.getElementById("q4").selectedOptions[0].text);
+	console.log(document.getElementById("q4").selectedOptions[0].value);
+	console.log(question4Response);
+
+    console.log("Question 5 Answers:");
+	console.log(document.getElementById("q5").selectedOptions[0].text);
+	console.log(document.getElementById("q5").selectedOptions[0].value);
+	console.log(question5Response);
+
+    let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+	  let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+	  let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+    let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[3]);
+    let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+   
+
+    console.log("c1="+question1Compatibility);
+	  console.log("c2="+question2Compatibility);
+	  console.log("c3="+question3Compatibility);
+    console.log("c4="+question4Compatibility);
+    console.log("c5="+question5Compatibility);
+
+    let totCompatability = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility
+    let percentCompatability =Math.ceil((totCompatability/MAX_SCORE) *100)
+
+    document.getElementById("Compatibility").innerHTML = "Your compatibility is..." + percentCompatability;
+    if (percentCompatability>90){document.getElementById("witty_remark").innerHTML = ("Never gonna give you up")
+
+  }
+    else if (percentCompatability >75 && percentCompatability <=90){document.getElementById("witty_remark").innerHTML = ("just friends?? :|")
+
+  }
+    else {document.getElementById("witty_remark").innerHTML = ("not today :(")
+ }
+}
+</script>
+
+</body>
+</html>
